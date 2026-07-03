@@ -1,221 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Single Page Website</title>
-    <style>
-        /* Base Colors & Typography */
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --text-dark: #1f2937;
-            --text-light: #4b5563;
-            --bg-light: #f3f4f6;
-            --bg-white: #ffffff;
-            --font-stack: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bryant keith bayhan — film developed by hand</title>
+<meta name="description" content="send us your rolls. we hand-develop your film and scan every frame.">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1A1A1A;
+    --ink-soft:#6b6b6b;
+    --safelight:#E8590C;
+    --line: rgba(0,0,0,0.12);
+    --font-display: "Segoe UI Variable Display Light", "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
+    --font-body: "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+  }
 
-        /* Global Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  *{ box-sizing:border-box; margin:0; padding:0; }
 
-        html {
-            scroll-behavior: smooth;
-        }
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
 
-        body {
-            font-family: var(--font-stack);
-            color: var(--text-dark);
-            line-height: 1.6;
-            background-color: var(--bg-white);
-        }
+  a{ color:inherit; }
+  h1,h2,h3{ font-family:var(--font-display); font-weight:300; line-height:1.15; }
 
-        /* Layout Container */
-        section {
-            padding: 5rem 10%;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+  .wrap{
+    max-width:880px;
+    margin:0 auto;
+    padding:0 24px;
+  }
 
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
+  .btn{
+    display:inline-block;
+    padding:13px 24px;
+    background:var(--safelight);
+    color:#fff;
+    font-size:15px;
+    font-weight:500;
+    border-radius:3px;
+  }
+  .btn:hover{ background:var(--ink); }
 
-        p {
-            font-size: 1.125rem;
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-            max-width: 800px;
-        }
+  section{ padding:64px 0; }
+  section + section{ border-top:1px solid var(--line); }
 
-        /* Navigation Bar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(5px);
-            padding: 1rem 10%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            z-index: 1000;
-        }
+  .hero{ text-align:center; padding:80px 0; }
+  .hero p.eyebrow{
+    color:var(--safelight);
+    font-size:clamp(24px, 4vw, 36px);
+    font-weight:600;
+    letter-spacing:0.02em;
+    text-transform:lowercase;
+    margin-bottom:14px;
+  }
+  .hero h1{
+    font-size:26px;
+    margin-bottom:18px;
+  }
+  .hero p.lede{
+    color:var(--ink-soft);
+    font-size:18px;
+    max-width:44ch;
+    margin:0 auto 30px;
+  }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary);
-            text-decoration: none;
-        }
+  h2{ font-size:28px; margin-bottom:36px; text-align:center; }
 
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-        }
+  .steps{
+    display:grid;
+    gap:28px;
+  }
+  @media(min-width:700px){ .steps{ grid-template-columns:repeat(3,1fr); } }
+  .step h3{ font-size:18px; margin-bottom:8px; }
+  .step h3 a{ text-decoration:underline; text-underline-offset:3px; text-decoration-color:var(--line); }
+  .step h3 a:hover{ color:var(--safelight); text-decoration-color:var(--safelight); }
+  .step p{ color:var(--ink-soft); font-size:15px; }
+  .step p + p{ margin-top:12px; }
+  .step p.cite{ margin-top:4px; }
+  .step .no{
+    font-weight:700;
+    color:var(--safelight);
+    margin-bottom:8px;
+    display:block;
+  }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
+  .closer{ text-align:center; }
+  .closer h2{ margin-bottom:14px; }
+  .closer p{ color:var(--ink-soft); margin-bottom:26px; }
+  .btn-row{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+  }
 
-        .nav-links a:hover {
-            color: var(--primary);
-        }
+  footer{
+    border-top:1px solid var(--line);
+    padding:28px 0;
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:14px;
+  }
 
-        /* Buttons */
-        .btn {
-            display: inline-block;
-            background-color: var(--primary);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.375rem;
-            text-decoration: none;
-            font-weight: 500;
-            transition: background-color 0.3s;
-            border: none;
-            cursor: pointer;
-            width: fit-content;
-        }
-
-        .btn:hover {
-            background-color: var(--primary-dark);
-        }
-
-        /* Section Specific Styles */
-        #hero {
-            background-color: var(--bg-light);
-            text-align: center;
-            align-items: center;
-            padding-top: 7rem;
-        }
-
-        #hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .card {
-            background: var(--bg-light);
-            padding: 2rem;
-            border-radius: 0.5rem;
-            border: 1px solid #e5e7eb;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--text-dark);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            font-size: 0.875rem;
-        }
-
-        /* Responsive Mobile Layout */
-        @media (max-width: 768px) {
-            .nav-links { gap: 1rem; }
-            section { padding: 4rem 5%; }
-            #hero h1 { font-size: 2.5rem; }
-            h2 { font-size: 2rem; }
-        }
-    </style>
+  :focus-visible{ outline:2px solid var(--safelight); outline-offset:2px; }
+</style>
 </head>
 <body>
 
-    <!-- Navigation Header -->
-    <nav class="navbar">
-        <a href="#hero" class="logo">Brand</a>
-        <ul class="nav-links">
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+<main id="top">
 
-    <!-- Hero Section -->
-    <section id="hero">
-        <h1>Welcome to Your Website</h1>
-        <p>A beautiful, lightning-fast single page template designed to launch your business, project, or portfolio in seconds.</p>
-        <a href="#features" class="btn">Get Started</a>
-    </section>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">bryant keith bayhan</p>
+      <h1>sound</h1>
+      <p class="lede">design—perform—educate</p>
+    </div>
+  </section>
 
-    <!-- Features Section -->
-    <section id="features">
-        <h2>Key Features</h2>
-        <p>This layout uses vanilla web technologies to maintain clean structure and optimize for fast loading speeds.</p>
-        <div class="features-grid">
-            <div class="card">
-                <h3>Responsive</h3>
-                <p>Adapts flawlessly to smartphones, tablets, and desktop resolutions.</p>
-            </div>
-            <div class="card">
-                <h3>Semantic HTML</h3>
-                <p>Built with accessible structures for optimal search engine indexability.</p>
-            </div>
-            <div class="card">
-                <h3>No Frameworks</h3>
-                <p>Zero external dynamic dependencies ensure light data footprints and instant caching.</p>
-            </div>
+  <section id="process">
+    <div class="wrap">
+      <div class="steps">
+        <div class="step">
+          <span class="no">new music</span>
+          <h3><a href="https://bryantkeithbayhan.bandcamp.com/album/second-origin" target="_blank" rel="noopener">second origin</a></h3>
+          <p style="font-style:italic;">"...to say 'self' is to say 'landscapes', because landscapes are not backdrops. landscapes are characters and landscapes change and differ."</p>
+          <p class="cite">— Édouard Glissant</p>
+          <p>an inventory of perspectives on coastal landscapes, filtered by memories of relationships and love for others. filtered like water draining through sand, with traces left behind so that clean water can flow back out to the sea.</p>
+          <p>desert islands are important because they give us the image of the second origin. a place to restart. and not only restart, but confirm that any original origin was never meant to be the final one.</p>
         </div>
-    </section>
+        <div class="step">
+          <span class="no">memories of the far shore</span>
+          <h3><a href="https://derekschultz.bandcamp.com/album/memories-of-the-far-shore" target="_blank" rel="noopener">album</a></h3>
+          <p>Recorded during the isolation of the 2020 pandemic lockdowns, Memories of the Far Shore is a collaborative work by Derek Schultz and bryant keith bayhan, both local musicians born and raised along the shores of the Morro Bay Estuary.</p>
+          <p>Emerging from a remote collaborative process of ideation and sound-sculpting, the music is an exploration of textural sounds relating to the estuary, its shorelines, the weather patterns of the locale, and the emotional tenor of the Mediterranean summers of the California coast.</p>
+          <p>Thematically, the record is a still-life vignette of a day on the Morro Bay estuary: low, cool breezes sweeping wisps of sea-smoke across the back bay, terns and pelicans circling and diving, the warmth of the encompassing sand dunes, the ceaseless sub-bass roar of the Northeast Pacific Ocean.</p>
+          <p>Musically, the album is a blend of bayhan's colorful tones and gritty textural soundscapes woven with Schultz's ambient-stoner rock guitars, organs, and bass grooves. These textures are set in a bed of kosmische synthesizer drones and electronic percussion, revealing a fourth-world music consciousness that makes the album feel like a transmission from a dream-world version of the California coast.</p>
+          <p class="cite">— Derek Schultz</p>
+        </div>
+        <div class="step">
+          <span class="no">filmmaking-poetics</span>
+          <h3><a href="https://vimeo.com/user154778101" target="_blank" rel="noopener">films</a></h3>
+          <p>gathering materials together into experiments to test how they float and swirl in the waves and backwashes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- About Section -->
-    <section id="about" style="background-color: var(--bg-light);">
-        <h2>About Us</h2>
-        <p>We believe in keeping things simple, direct, and accessible. This container provides ample space for a personal biography, company vision statement, or project backstory.</p>
-    </section>
+  <section class="closer" id="start">
+    <div class="wrap">
+      <h2>contact</h2>
+      <div class="btn-row">
+        <a href="mailto:bryant.bayhan@gmail.com" class="btn">email</a>
+        <a href="https://www.instagram.com/iamthepaperman/" target="_blank" rel="noopener" class="btn">instagram</a>
+      </div>
+    </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2>Get in Touch</h2>
-        <p>Have questions or want to work together? Fill out your information below or connect through social channels.</p>
-        <button class="btn" onclick="alert('Form submission logic goes here!')">Contact Support</button>
-    </section>
+</main>
 
-    <!-- Sticky Footer -->
-    <footer>
-        <p>&copy; 2026 Your Company Name. All rights reserved.</p>
-    </footer>
+<footer>
+  © 2026 bryant keith bayhan
+</footer>
 
 </body>
 </html>
